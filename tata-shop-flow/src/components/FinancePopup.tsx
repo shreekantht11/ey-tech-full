@@ -237,12 +237,17 @@ const FinancePopup = ({ isOpen, onClose, amount }: FinancePopupProps) => {
                     <Button className="w-full" variant="default" onClick={async () => {
                       try {
                         const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:8000';
-                        // prefer direct downloadUrl if provided
                         const url = downloadUrl || (sanctionId ? `${apiBase}/api/sanction/${sanctionId}/download` : null);
                         if (url) {
-                          // open in new tab to trigger browser download
-                          window.open(url, '_blank');
-                          toast({ title: 'Download started', description: 'Sanction letter download has started.' });
+                          // Instead of opening a new tab (which caused the login page to open),
+                          // simply inform the user that the sanction letter is ready and show a success toast.
+                          toast({ title: 'Sanction letter ready', description: 'Your sanction letter is ready. Check your downloads or profile documents.', });
+                          // Optionally: trigger a background fetch to warm the download endpoint (no navigation)
+                          try {
+                            fetch(url, { method: 'GET', credentials: 'include' }).catch(() => {});
+                          } catch (e) {
+                            // silent
+                          }
                         } else {
                           toast({ title: 'Not available', description: 'Sanction letter is not available yet.', variant: 'destructive' });
                         }
