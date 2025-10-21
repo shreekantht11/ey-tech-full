@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Simple Tata-inspired mark: a stylized 'T' inside a circle -->
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#0b5cff" />
+      <stop offset="1" stop-color="#0057d9" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="#ffffff" />
+  <circle cx="32" cy="32" r="28" fill="url(#g)" />
+  <g transform="translate(8,8) scale(0.75)" fill="#fff">
+    <path d="M24 6 L40 6 L40 12 L34 12 L34 44 L30 44 L30 12 L24 12 Z" />
+  </g>
+</svg>
